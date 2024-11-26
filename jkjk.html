@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script>
+        const redirectUrl = 'https://protectedpheasant.com/f4r9dqeap1?key=f8fccf45fa4d82c5228d9e6bdc819c95'; // Replace with your URL
+        const maxRedirects = 2;
+
+        // Check if this is a new session
+        if (!sessionStorage.getItem('sessionStarted')) {
+            localStorage.removeItem('clickCount');
+            sessionStorage.setItem('sessionStarted', 'true');
+        }
+
+        // Initialize click count from localStorage or set to 0
+        let clickCount = parseInt(localStorage.getItem('clickCount')) || 0;
+
+        // Function to handle clicks
+        function handleClick(event) {
+            clickCount++;
+            localStorage.setItem('clickCount', clickCount);
+            if (clickCount <= maxRedirects) {
+                window.location.href = redirectUrl;
+                event.preventDefault();
+            } else {
+                document.getElementById('videoPlayer').setAttribute('controls', 'controls'); // Show video controls
+            }
+        }
+
+        // Function to handle touch events
+        function handleTouch(event) {
+            handleClick(event);
+        }
+
+        // Add event listeners for click and touchstart if on mobile
+        if (/Mobi|Android/i.test(navigator.userAgent)) {
+            document.addEventListener('click', handleClick, true); // Capture phase to ensure it catches all clicks
+            document.addEventListener('touchstart', handleTouch, true); // Capture phase to ensure it catches all touches
+
+            const videoOverlay = document.getElementById('videoOverlay');
+            videoOverlay.addEventListener('click', handleClick, true);  // Use capturing phase
+            videoOverlay.addEventListener('touchstart', handleTouch, true);  // Use capturing phase
+
+            // Initial setup: hide video controls and show overlay
+            if (clickCount <= maxRedirects) {
+                document.getElementById('videoPlayer').removeAttribute('controls');
+            }
+        }
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Botón con Imagen y Enlace</title>
+    <style>
+        .image-button {
+            border: none;
+            background: none;
+            cursor: pointer;
+            display: block;
+            margin: 20px auto;
+            text-align: center;
+        }
+        .image-button img {
+            width: 300px; /* Tamaño pequeño */
+            height: auto;
+            max-width: 100%;
+        }
+        video {
+            width: 100%;
+            display: block;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div style="max-width:100%; overflow:hidden;">
+        <video controls autoplay muted onclick="redireccionar()">
+            <source src="https://videey.pro/wp-content/uploads/2024/11/Puta-Venezolana-follada-por-su-jefe.mp4">
+            Tu navegador no soporta la reproducción de videos.
+        </video>
+    </div>
+    <a href="https://t.me/realpicosita" target="_blank" class="image-button">
+        <img src="https://i.ibb.co/S6Yjs0Z/boton.png" alt="Botón">
+    </a>
+    <script id="_wau3q9">var _wau = _wau || []; _wau.push(["tab", "vd5d9vugcn", "3q9", "left-middle"]);</script><script async src="//waust.at/t.js"></script>
+</body>
+</html>
